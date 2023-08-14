@@ -177,9 +177,9 @@ var v =[]
   function addToCart(element) 
   {
     console.log(element);
-    let fooditem = document.querySelector('.item-name').innerText;
-    let price = document.querySelector('.price').innerText;
-    let qty = document.querySelector('.item-nos').value;
+    let fooditem = element.parentNode.parentNode.parentNode.querySelector('.item-name').innerText;
+    let price = element.parentNode.parentNode.parentNode.querySelector('.price').innerText;
+    let qty = element.parentNode.parentNode.parentNode.querySelector('.item-nos').value;
     console.log(qty);
     let t_pr = parseInt(price.slice(1,price.length));//100
     t_pr = t_pr*qty;//3*100
