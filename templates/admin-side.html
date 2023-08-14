@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>ZEST Canteen | Admin</title>
+
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="static/images/logo2-removebg-preview.png" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/utilities.css" />
+    <link rel="stylesheet" href="static/css/mobile.css" />
+    <link rel="stylesheet" href="static/css/animations.css" />
+
+    <!-- Firebase Connectivity Using CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <header class="navbar">
+      <div class="flex text-center jc-ai-center">
+        <!-- Left Navigation -->
+        <div class="site-title flex align-item-left">
+          <a class="logo" href="#">
+            <img src="static/images/logo2-removebg-preview.png" alt="Logo">
+          </a>
+          <div>
+            <a href="/index.html">
+              <h1>
+                <span style= "color:#b16c23; font-size:40px; font-family:audrey;"><b>ZEST</b></span> 
+                <span
+                  class="clr-green"
+                  style="color: lightsteelblue; font-family: timesnewroman"
+                  >Canteen Admin</span
+                >
+              </h1></a
+            >
+          </div>
+          <!-- Toggle Bars -->
+          <div class="toggle-bars mybar">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+          </div>
+        </div>
+        <!-- Right Navigation -->
+        <nav class="site-nav flex right-nav align-items-right">
+          <ul class="flex">
+            <li><a href="/order.html">Orders</a></li>
+            <li><a href="/admin-side.html">Product Management</a></li>
+            <li><a href="/index.html">Logout</a></li>
+            <!-- <button class="btn" id="logout">Log Out</button> -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+      <nav class="nav container">
+        <ul class="mob-ul">
+          <li><a href="/orders.html">Orders</a></li>
+          <li><a href="/admin-side.html">Product Management</a></li>
+          <li><a href="/index.html">Log Out</a></li>
+          <div>
+            <!-- <a href="/index.html">Log Out</a> -->
+
+            <!-- <button class="btn" id="logout" style="padding: 10px 20px">
+              Log Out
+            </button> -->
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Product Management -->
+    <section class="product-management">
+      <div class="container-min grid">
+        <div class="title md text-center">Product Management</div>
+        <hr />
+        <article class="choose-operation text-center">
+          <button class="btn p-1" id="add-product-menu">
+            Add a Product to Menu
+          </button>
+          <button class="btn p-1" id="remove-product-menu">
+            Remove a Product from Menu
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section class="add-product add-container" id="add_to_menu">
+      <div class="container-min grid">
+        <div class="title md text-center">Add Product in Menu</div>
+        <hr />
+        <!-- Add Menu Item -->
+        <article class="menu-item text-center">
+          <img src="static/images/sandwich1.jpg" alt="Product image" />
+
+          <div class="item-info">
+            <figure>
+              <div class="flex align-item-center">
+                <input id="add-product-admin" type="text" placeholder="Title of Food" />
+                <input id="add-price-admin" type="text" placeholder="Price" />
+              </div>
+            </figure>
+            <div class="item-category my-1">
+              <select name="Categories" id="add-category">
+                <option value="BreakFast">BreakFast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Dinner">Dinner</option>
+              </select>
+            </div>
+            <div class="my-1 text-center">
+              <button class="btn" onclick="addProduct()">Add to Menu</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="add-product remove remove-container" id="remove_from_menu">
+      <div class="container-min grid">
+        <div class="title md text-center">Remove a Product from Menu</div>
+        <hr />
+        <!-- Add Menu Item -->
+        <article class="menu-item text-center">
+          <img src="static/images/sandwich1.jpg" alt="Product image" />
+
+          <div class="item-info">
+            <figure>
+              <h2>
+                <input id="remove-product-admin" type="text" placeholder="Title of Food" />
+              </h2>
+            </figure>
+            <div class="my-1 text-center">
+              <button class="btn" onclick="removeProduct()">Remove From Menu</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Controls User Stuff -->
+    <script src="static/js/admin.js"></script>
+    <!-- Page Animations -->
+    <script src="static/js/animations.js"></script>
+    <!-- Menu & Admin Stuff -->
+    <script src="static/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="static/js/functioning.js"></script>
+
+  </body>
+</html>

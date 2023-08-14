@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZEST Canteen | Menu</title>
+
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="static/images/logo2-removebg-preview.png"/>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/utilities.css" />
+    <link rel="stylesheet" href="static/css/mobile.css" />
+    <link rel="stylesheet" href="static/css/animations.css" />
+
+    <!-- Firebase Connectivity Using CDN -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script> -->
+
+    <!-- Controls User Stuff -->
+    <script src="static/js/functioning.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <header class="navbar">
+      <div class="flex text-center jc-ai-center">
+        <!-- Left Navigation -->
+        <div class="site-title flex align-item-left">
+          <a class="logo" href="#">
+            <img src="static/images/logo2-removebg-preview.png" alt="Logo">
+          </a>
+          <div>
+            <a href="/index.html"
+              ><h1>
+                <span style= "color:#b16c23; font-size:40px; font-family:audrey;"><b>ZEST</b></span> 
+                <span
+                  style="color: lightsteelblue; font-family: 'timesnewroman;"
+                  >Canteen</span
+                >
+              </h1></a
+            >
+          </div>
+          <!-- Toggle Bars -->
+          <div class="toggle-bars mybar">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+          </div>
+        </div>
+        <!-- Right Navigation -->
+        <nav class="site-nav flex right-nav align-items-right">
+          <ul class="flex">
+            <li>
+              <a href="/client-side.html"
+                ><i class="fas fa-cocktail"></i> Menu</a
+              >
+            </li>
+            <!-- <li>
+              <a href="/user-orders.html"
+                ><i class="fas fa-coins"></i> Your Orders</a
+              >
+            </li> -->
+            <li><a href="/index.html">Log Out</a>
+            </li>
+            <div>
+              <!-- <a href="/index.html">Log Out</a> -->
+              <!-- <button class="btn" id="userlogout"></button> -->
+            </div>
+            <div>
+              <!-- Cart Icon -->
+              <a class="flex" id="cart-btn" onclick="findTotalPrice()">
+                <i class="fas fa-shopping-cart"></i>
+                <p id="cart-values">0</p>
+              </a>
+            </div>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+      <nav class="nav container">
+        <ul class="mob-ul">
+          <li><a href="/client-side.html">Menu</a></li>
+          <li><a href="/user-orders.html">My Orders</a></li>
+          <button class="btn" onclick="logout()" id="userlogout">Log Out</button>
+          <!-- Cart Icon -->
+          <a class="flex" id="cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <p class="cart-values"></p>
+          </a>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Cart -->
+    <section class="cart-overlay">
+      <div class="cart-innerlay">
+        <!-- Upper Side -->
+        <header class="cart-title text-center md">
+          <div>Your Cart</div>
+          <div>
+            <i
+              class="fas fa-times"
+              onclick="cartOverlay.classList.remove('show');
+                       cartInnerlay.classList.remove('showCart');"
+            >
+            </i>
+          </div>
+        </header>
+        <hr class="py-1" />
+        <!-- Cart Item Container -->
+          <!-- Cart Items added to cart -->
+          <table id="myTable">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table rows will be added here using JavaScript -->
+            </tbody>
+          </table>
+        <hr class="py-1" />
+        <!-- Footer Side  -->
+        <div class="cart-footer text-center sm">
+          <div>Your Total : &#8377;<span class="cart-total sm">0</span></div>
+          <div class="my-1">
+            <button class="clear-cart">Clear Cart</button>
+            <button class="check-out" onClick="options()">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Showcase -->
+    <!-- Hero -->
+    <section class="menu-hero">
+      <div class="banner">
+        <h1 class="banner-title lg">Our Menu</h1>
+        <button class="banner-btn btn" onclick="options()">Order Now</button>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu"  id="menu_details" style="padding: 15px ;">
+      <main class="container grid grid-1">
+        <!-- Title -->
+        <div class="title text-center">
+          <h2 class="lg my-2">Search</h2>
+          <!-- Filter Buttons -->
+          <div class="search-container">
+            <input type="text" class="category-search" placeholder="Search categories..." style="width: 500px; height:50px;">
+          </div>
+        </div>
+        <hr />
+
+
+
+        
+        <!-- Menu Items -->
+        <button onclick="menucall()" >View Items</button>
+        <div class="flex flex-wrap" id="menu_fetch">
+          
+        </div>
+      </main>
+    </section>
+
+    <!-- Menu & Admin Stuff -->
+    <script src="static/js/main.js"></script>
+    <!-- Creative Features -->
+    <script src="static/js/features.js"></script>
+  </body>
+  <script>
+  var v =[]
+  
+  let total =0
+
+  function addToCart(element) {
+    console.log(element);
+    let fooditem = element.parentNode.parentNode.parentNode.querySelector('.item-name').innerText
+    let price = element.parentNode.parentNode.parentNode.querySelector('.price').innerText
+    total += parseInt(price.slice(1,price.length))
+    v.push({fooditem,price})
+    console.log(v)
+    console.log(total);
+    let t = document.getElementById('cart-values').innerText 
+    t= parseInt(t)+1
+    document.getElementById('cart-values').innerText = t
+    let email="{{email}}";
+    // let userId="user";
+    let cartId="cart";
+    let cartItem = {
+    userId: email,
+    cartId: cartId,
+    foodItem: fooditem,
+    totalAmount: price,
+  };
+
+  // Send an AJAX request to your server to save the cart item
+  // Example using fetch:
+  fetch("/add_to_cart", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cartItem),
+  })
+    .then(function (response) {
+      // Handle the response from the server
+      if (response.ok) {
+        // Item added to cart successfully
+        alert("Item added to cart!");
+      } else {
+        // Error occurred while adding item to cart
+        alert("Error adding item to cart. Please try again.");
+      }
+    })
+    .catch(function (error) {
+      // Error occurred while making the request
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    });
+  }
+
+  function findTotalPrice() {
+    let c=document.querySelector('.cart-total')
+    console.log(c)
+    c.innerHTML=total
+  }  
+  </script
+</html>
