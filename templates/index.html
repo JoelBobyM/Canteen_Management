@@ -8,6 +8,7 @@
 
     <!-- Page Icon -->
     <link rel="Micosoft icon" href="static/images/logo2-removebg-preview.png" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link
@@ -16,192 +17,180 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    
-
     <!-- Style Sheets -->
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/style-index.css" />
     <link rel="stylesheet" href="static/css/utilities.css" />
-    <link rel="stylesheet" href="static/css/mobile.css" />
-    <link rel="stylesheet" href="static/css/animations.css" />
 
-    <!-- Firebase Connectivity Using CDN -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
     <!-- Sweet Alert Pop Modal -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body style="background-color: #2b1b18">
-    <!-- NavBar -->
-    <header class="navbar" id="preview-navbar"></header>
-
-    <!-- Mobile Navbar -->
-    <header class="mob-navbar" id="mob-preview-navbar">
-      <!-- Comes through JS -->
-    </header>
-
-    <!-- <section class="prakat-ho-animation">
-      <img src="static/images/fisat4.jpg" loading="lazy" alt="Home Page Image" />
-    </section> -->
-
-    
-
-    <!-- Modal LogIn -->
-    <section ><div class="modal-container">
-      <!-- Written Stuff -->
-      <div class="modal-content">
-          <div class="md" id="welcome">Welcome back!</div>
-          <!-- <div><i onclick="signModal.classList.remove('show');" class="fas fa-times"></i></div>
-      </div> -->
-      <!-- Other way of LogIn's -->
-      <!-- <ul class="modal-icons flex">
-          <li><button><i class="fab fa-google" id="google-signUpIn"></i></button></li>
-          <li><button><i class="fab fa-github" id="github-signUpIn"></i></button></li>
-          <li><button><i class="fab fa-facebook" id="facebook-signUpIn"></i></button></li>
-      </ul> -->
-      <!-- Sign In Input's -->
-      <form action="/client-side.html" class="modal-form grid py-1 text-center"  method="POST">
-          <input type="email" placeholder="Email Id" name="email" required>
-          <input type="password" placeholder="Password" id="sign-in-password"  name="password" required>
-
-          <button type="submit" class="btn">Login</button>
-      </form>
-      <!-- Remember Me CheckBox -->
-      <label class="text-center">
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-      <!-- Written Stuff -->
-      <div class="modal-content m-content-2 py-1">
-          Click “Sign In” to agree to Terms of Service and acknowledge 
-          that Privacy Policy applies to you. No account? 
-          <a id="signup-modal" 
-              onclick="signModal.classList.remove('show');
-                       signUpModal.classList.add('show');" 
-              style="cursor: pointer;">
-              <span class="clr-green">Create one</span>
-          </a>
-      </div>
-  </div>
-</section>
-<!-- Modal SignUp -->
-<section class="signup-modal"><!-- Comes From Js File --></section>
-    <!-- Hero Section -->
-  <hr>
-    <section class="hero my-2">
-      <main class="container-min grid grid-1 jc-ai-center">
-        <h1
-          class="clr-green lg text-center"
-          style="
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-              serif;
-            color: #2b1b18;
-          "
-        >
-          <b>Pocket Friendly Cafe</b>
-        </h1>
-        <article class="hero-article flex jc-ai-center">
-          <img src="static/images/canteen.jpg" loading="lazy" alt="Home Canteen Image" />
-          <div class="p-2">
-            <h3
-              class="clr-red md"
-              style="
-                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-                  serif;
-                color: rgb(173, 73, 45);
-              "
-            >
-              Asian Cuisines & Beverages
-            </h3>
-            <p>
-              Each and every day we strive to better serve our community,
-              customers with food that's fresh, tasty and healthy. Sumptuous
-              delicious food baked in our cafe with curated ingredients and
-              recipes
-            </p>
+    <!-- Modal LogIn and SignUp-->
+    <section>
+      <div class="modal-container">
+        <div class="main">  	
+          <input type="checkbox" id="chk" aria-hidden="true">
+          <div class="signup">
+            <form action="/client-side.html" method="POST">
+              <label for="chk" aria-hidden="true">Login</label>
+              <input type="email" name="email" placeholder="Email" required value="{{email}}">
+              <input type="password" name="password" placeholder="Password" required>
+              <button type="submit">Login</button>
+              {% if msg_lin %}
+                <p class="msg">&#x26A0; {{ msg_lin }}</p>
+              {% endif %}
+            </form>
           </div>
-        </article>
-      </main>
+          <div class="login">
+            <form required method="post" action="/">
+              <label for="chk" aria-hidden="true">Sign up</label>
+              <input type="text" name="fullname" placeholder="User name" required>
+              <input type="email" name="email" placeholder="Email" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <button type="submit">Sign up</button>
+              {% if msg_sup %}
+                <p class="msg">&#x26A0; {{ msg_sup }}</p>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
-    <hr />
+    <hr>
+
+    <!-- Asian Cuisines Section -->
+    <section class="hero my-2">
+      <div class="text-content">
+        <h1 class="text-center lg p-1"><b>Pocket Friendly Cafe</b></h1>
+        <div class="card">
+          <h3 class="md">Asian Cuisines & Beverages</h3>
+          <p>
+            Each and every day we strive to better serve our community,
+            customers with food that's fresh, tasty and healthy. Sumptuous
+            delicious food baked in our cafe with curated ingredients and
+            recipes
+          </p>
+        </div>
+    </div>
+    <div class="image-content">
+        <img src="static/images/canteen.jpg" alt="Image">
+    </div>
+    </section>
+    <hr>
 
     <!-- Come & meet Section -->
-
     <section class="showcase my-3">
       <main class="container-min grid-1 text-center jc-ai-center">
         <!-- Heading & Slogan -->
         <article>
-          <h1
-            class="lg"
-            style="
-              font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',serif;
-              color: #2b1b18;
-            "
-          >
+          <h1 class="lg" style=" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',serif; color: #2b1b18; " >
             __ <b>Come and Meet</b> __
           </h1>
-          <h6 class="md">Our Crew</h6>
         </article>
         <!-- Show Case Content -->
-        <article class="grid-grid-3">
-          <div class="m-2">
-            <h3 class="md">Fresh Daily</h3>
-            <img src="static/images/waiter.svg" loading="lazy" alt="" />
-            <p>
-              Savour the creamy goodness of Champion Fruit Cream. We bet,
-              there's the goodness of cream in every bite!
-            </p>
+        <div class="container">
+          <div class="featuredPropBox">
+              <ul>
+                  <li> 
+                      <a href="#">
+                          <div class="fplogo"><h3 class="md">Fresh Daily</h3></div>
+                          <div class="fptext">
+                            <p>
+                              Savour the creamy goodness of Champion Fruit Cream. We bet,
+                              there's the goodness of cream in every bite!
+                            </p>
+                          </div>
+                      </a> 
+                  </li>
+                  <li> 
+                      <a href="#">
+                          <div class="fplogo"><h3 class="md">Savoury & Creamy</h3></div>
+                          <div class="fptext">
+                            <p>
+                              Sumptuous delicious food baked in with curated ingredients and
+                              recipes curated ingredients and recipes.
+                            </p>
+                          </div>
+                      </a> 
+                  </li>
+                  <li> 
+                      <a href="#">
+                          <div class="fplogo"><h3 class="md">Good Food</h3></div>
+                          <div class="fptext">
+                            <p>
+                              Each and every day we strive to better serve our community,
+                              customers with food that's fresh, tasty and healthy.
+                            </p>
+                          </div>
+                      </a> 
+                  </li>
+              </ul>
           </div>
-          <div class="m-2">
-            <h3 class="md">Savoury & Creamy</h3>
-            <img src="static/images/bbq.svg" loading="lazy" alt="" />
-            <p>
-              Sumptuous delicious food baked in with curated ingredients and
-              recipes curated ingredients and recipes.
-            </p>
-          </div>
-          <div class="m-2">
-            <h3 class="md">Good Food</h3>
-            <img src="static/images/burger.svg" loading="lazy" alt="" />
-            <p>
-              Each and every day we strive to better serve our community,
-              customers with food that's fresh, tasty and healthy.
-            </p>
-          </div>
-        </article>
+        </div>
       </main>
     </section>
 
     <!-- Most Loved Dishes -->
     <hr />
     <section class="dishes my-4">
-      <h1
-        class="text-center lg p-1"
-        style="
-          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-          color: #2b1b18;
-        "
-      >
+      <h1 class="text-center lg p-1" style=" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2b1b18; text-shadow: 0 0 20px #FF5252;">
         <b>Our Most Loved Dishes</b>
       </h1>
       <main class="container-min">
         <div class="flex jc-ai-center" id="best-dishes-container">
-          <!-- Comes Through JS -->
+          <div class="card text-center m-2">
+            <h2>Alfam Chicken</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <img src="https://img.onmanorama.com/content/dam/mm/en/food/recipe/images/2021/2/14/alfaham.jpg.transform/onm-articleimagemob/image.jpg" loading="lazy" alt="Canteen Dishes">
+            <p>Sumptuous delicious food baked in our cafe with curated ingredients</p>
+            <h3 class="md">&#8377; 100 </h3>
+            <button onclick="tosignin()
+            " class="fa fa-shopping-cart"></button>
+          </div>
+
+          <div class="card text-center m-2">
+            <h2>Fried Rice</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <img src="https://i2.wp.com/www.everydayeasyeats.com/wp-content/uploads/2016/06/Chinese-Fried-Rice-2.jpg?resize=680%2C1020" loading="lazy" alt="Canteen Dishes">
+            <p>Sumptuous delicious food baked in our cafe with curated ingredients</p>
+            <h3 class="md">&#8377; 100</h3>
+            <button onclick="tosignin()
+            " class="fa fa-shopping-cart"></button>
+          </div>
+
+          <div class="card text-center m-2">
+            <h2>Noodles</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class='fas fa-star-half-alt'></i>
+            </div>
+            <img src="http://yesofcorsa.com/wp-content/uploads/2015/08/2627_noodles.jpg" loading="lazy" alt="Canteen Dishes">
+            <p>Sumptuous delicious food baked in our cafe with curated ingredients</p>
+            <h3 class="md">&#8377; 75</h3>
+            <button onclick="tosignin()
+            " class="fa fa-shopping-cart"></button>
+          </div>
         </div>
       </main>
     </section>
-
-    <hr />
-    <!-- User Footer
-    <footer class="customer-footer" id="customer-footer">
-       Comes Through JS -->
-    <!-- </footer> --> 
-    <script src="static/js/main.js"></script>
-    <!-- Creative Features -->
-    <script src="static/js/features.js"></script>
-    <!-- Controls User Stuff -->
-    <script src="static/js/functioning.js"></script>
-    <!-- Page Animations -->
-    <script src="static/js/animations.js"></script>
+    <hr>
   </body>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="static/js/main.js"></script>
 </html>

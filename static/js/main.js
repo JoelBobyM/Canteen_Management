@@ -154,7 +154,7 @@ function options()
               <hr style="margin: 10px 0;">
               <div class="menu-cart-functionality">
                   <div class="price" id="price">&#8377;${val[i].price}</div>
-                  <input class="item-nos" type="number" name="integerInput" value="1" style="width: 50px;">
+                  <input class="item-nos" type="number" name="integerInput" value="1" style="width: 30px;">
                   <div class="cart-btn-container">
                       <button onclick='addToCart(this)' class="bag-btn" id="add-to-cart-btn" data-id=1>Add to Cart</i></button>   
                   </div>
@@ -638,3 +638,23 @@ function ClientDataFlow(addToCartBtn) {
   });
 }
 
+// index.html
+
+function tosignin() 
+{
+  window.scrollTo(0, 0);
+}
+
+ScrollReveal({ reset: true });
+
+ScrollReveal().reveal(".hero .text-content h1", {
+  duration: 3000,
+  origin: "top",
+  distance: "40px",
+  easing: "cubic-bezier(0.5, 0, 0, 1)",
+});
+
+ScrollReveal().reveal(".hero .text-content .card", {
+  duration: 9000,
+  distance: "0"
+});

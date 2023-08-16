@@ -98,39 +98,29 @@ def remove_from_menu():
 def client_side():
     return render_template('client-side.html')
 
-@app.route("/", methods=['POST', 'GET'])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    message = ''
-
     if request.method == "POST":
         user = request.form.get("fullname")
         email = request.form.get("email")
-        password1 = request.form.get("password1")
-        password2 = request.form.get("password2")
-        #if found in database showcase that it's found 
-        email_found = records.find_one({"email": email})
-        
-        if email_found != None:
-            message = 'This email already exists in database'
-            return render_template('index.html', message=message)
-        if password1 != password2:
-            message = 'Passwords should match!'
-        else:
-            #hash the password and encode it
-            #assing them in a dictionary in key value pairs
-            user_input = {'name': user, 'email': email, 'password': password1}
-            #insert it in the record collection
-            records.insert_one(user_input)
+        password1 = request.form.get("password")
 
-            #find the new created account and its email
+        email_found = records.find_one({"email": email})
+        if email_found:
+            message = 'This email already exists in the database'
+            print(message)  # Print to the terminal
+            return render_template('index.html', msg_sup=message)
+        else:
+            user_input = {'name': user, 'email': email, 'password': password1}
+            records.insert_one(user_input)
             user_data = records.find_one({"email": email})
-            print("User Data : ",user_data)
             new_email = user_data['email']
-            #if registered redirect to logged in as the registered user
+            message = "New user created"
+            print(message)  # Print to the terminal
             return render_template('index.html', email=new_email)
-         # Check if any of the variables is None
- 
+
     return render_template('index.html')
+
 
 # def logout():
 #     session.pop("email", None)
@@ -184,13 +174,13 @@ def login():
                 session["email"] = user['email']
                 if user['email'] == 'admin@gmail.com':
                     return redirect(url_for('admin'))
-                return render_template('client-side.html', email=user['email'])
+                return render_template('client-side.html')
             else:
                 message = 'Wrong password'
         else:
             message = 'Email not found'
-
-    return render_template('index.html', message=message)
+    print(message)
+    return render_template('index.html', msg_lin=message, email = email)
 
 
    

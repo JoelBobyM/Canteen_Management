@@ -21,14 +21,13 @@ function menucall()
                   <h2 class='item-name' id="item">${val[i].food_name}</h2>
                   <div class="item-category">${val[i].category}</div>
                   <div class="flex" style="margin-top: 10px;">
-                      
                       <p>${val[i].quantity}</p>
                   </div>
               </figure>
               <hr style="margin: 10px 0;">
               <div class="menu-cart-functionality">
                   <div class="price" id="price">&#8377;${val[i].price}</div>
-                  <input class="item-nos" type="number" name="integerInput" value="1" style="width: 50px;">
+                  <input class="item-nos" type="number" name="integerInput" value="1" style="width: 30px;">
                   <div class="cart-btn-container">
                       <button onclick='addToCart(this)' class="bag-btn" id="add-to-cart-btn" data-id=1>Add to Cart</i></button>   
                   </div>
